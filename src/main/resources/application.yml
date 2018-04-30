@@ -1,0 +1,46 @@
+spring:
+  thymeleaf:
+    cache: true
+    #关闭缓存，即时刷新
+    #cache: false
+  devtools:
+    restart:
+      #启用devtools热部署
+      enabled: true
+      #这个目录下文件变动会restart
+      additional-paths: src/main/java
+      #这些目录下文件修改不会restart
+      exclude: static/**,WEB-INF/**,public/**
+##server服务端相关配置##
+server:
+  #配置API端口号
+  port: 8080
+  #配置context-path，一般来说这个配置在服务发布的时候不配置
+  context-path: /LY
+  #错误页，指定发生错误时，跳转的URL --> BasicErrorController
+  error:
+    path: /error
+  #session最大超时时间（分钟），默认为30分钟
+  session:
+    timeout: 60
+  #该服务器绑定IP地址，启动服务器时如本机不是该IP地址，则抛出异常，启动失败，只有特殊需求的情况下才配置
+  address: 192.168.5.5
+  ##server-tomcat相关配置##
+  tomcat:
+    #tomcat最大线程数，默认为200
+    max-threads: 250
+    #tomcat的URI编码
+    uri-encoding: UTF-8
+    #存放tomcat的日志，dump等文件的临时文件夹，默认为系统的temp文件夹
+    basedir: E:/springboot-tomcat-temp
+    #打开tomcat的Access日志并可以设置日志格式的方法
+    accesslog:
+      enabled: true
+      pattern:
+      #accesslog目录，默认在basedir/logs
+      directory:
+logging:
+  #日志文件目录
+  path: E:/springboot-tomcat-temp
+  #日志文件名称，默认为spring.log
+  file: myapp.log
