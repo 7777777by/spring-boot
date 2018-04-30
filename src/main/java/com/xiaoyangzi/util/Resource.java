@@ -10,7 +10,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @ConfigurationProperties(prefix = "com.xiaoyangzi.opensource")
-@PropertySource(value = "classpath:resource.propertity")
+@PropertySource(value = "classpath:resource.propertites")
 public class Resource {
     private String name;
     private Integer age;

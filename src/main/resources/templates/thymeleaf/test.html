@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <!--<script th:src="@{/static/js/test.js}"></script>-->
+</head>
+<body>
+<div>
+    用户姓名：<input th:id="${user.name}" th:name="${user.name}" th:value="${user.name}"/>
+    <br/>
+    用户年龄：<input th:value="${user.age}"/>
+    <br/>
+    用户生日：<input th:value="${user.birthday}"/>
+    <br/>
+    用户生日：<input th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}"/>
+</div>
+<br/>
+<div th:object="${user}">
+    用户姓名：<input th:id="*{name}" th:name="*{name}" th:value="*{name}"/>
+    <br/>
+    用户年龄：<input th:value="*{age}"/>
+    <br/>
+    用户生日：<input th:value="*{birthday}"/>
+    <br/>
+    用户生日：<input th:value="*{#dates.format(birthday, 'yyyy-MM-dd')}"/>
+</div>
+text与utext：<br/>
+<span th:text="${user.desc}">abc</span>
+<br/>
+<span th:utext="${user.desc}">abc</span>
+<br/>
+URL：<br/>
+<a href="http://www.baidu.com">网站地址</a><br/>
+<a th:href="@{http://www.baidu.com}">网站地址</a>
+<br/>
+<form th:action="@{/th/postform}" th:object="${user}" method="post" th:method="post">
+    <input type="text" th:field="*{name}"/>
+    <input type="password" th:field="*{password}"/>
+    <input type="submit" value="登录"/>
+</form>
+<br/>
+<div th:if="${user.age == 18}">永远18岁</div>
+<div th:if="${user.age gt 18}">你老了</div>
+<div th:if="${user.age lt 18}">你很年轻</div>
+<div th:if="${user.age ge 18}">大于等于</div>
+<div th:if="${user.age le 18}">小于等于</div>
+<br/>
+<select th:object="${user}">
+    <option>请选择</option>
+    <option th:selected="*{name eq 'xiaoyangzi'}">xiaoyangzi</option>
+    <option th:selected="*{name eq 'jinger'}">jinger</option>
+    <option th:selected="*{name eq 'feifei'}">feifei</option>
+</select>
+<br/>
+<table>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>年龄说明</th>
+        <th>生日</th>
+        <th>备注</th>
+    </tr>
+    <tr th:each="person:${userList}">
+        <td th:text="${person.name}"></td>
+        <td th:text="${person.age}">18岁</td>
+        <td th:text="${person.age gt 18} ? '你老了！' : 你还很年轻！"></td>
+        <td th:text="${#dates.format(person.birthday, 'yyyy-MM-dd')}"></td>
+        <td th:utext="${person.desc}"></td>
+    </tr>
+</table>
+<br/>
+<div th:switch="${user.name}">
+    <p th:case="'xiaoyangzi'">xiaoyangzi</p>
+    <p th:case="#{roles.manager}">普通管理员</p>
+    <p th:case="#{roles.superAdmin}">超级管理员</p>
+    <p th:case="*">其他用户</p>
+</div>
+</body>
+</html>
