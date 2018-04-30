@@ -11,6 +11,19 @@ spring:
       additional-paths: src/main/java
       #这些目录下文件修改不会restart
       exclude: static/**,WEB-INF/**,public/**
+  ##freemarker静态资源配置##
+  freemarker:
+    #设定ftl文件路径
+    template-loader-path: classpath:/templates
+    #关闭缓存，即时刷新，上线生产环境需要改为true
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
 ##server服务端相关配置##
 server:
   #配置API端口号
