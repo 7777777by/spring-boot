@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
  * @Author: liuyang
  * @Date: 20180430 17:55
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class CommonExceptionHandler {
     public static final String ERROR_VIEW = "error";
 
-    @ExceptionHandler(value = Exception.class)
+    //@ExceptionHandler(value = Exception.class)
     public Object errorHandler(HttpServletRequest request, HttpServletResponse response, Exception e) throws Exception {
         e.printStackTrace();
         ModelAndView mav = new ModelAndView();
