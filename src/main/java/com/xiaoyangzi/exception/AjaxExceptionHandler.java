@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
  * @Author: liuyang
  * @Date: 20180430 18:09
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 public class AjaxExceptionHandler {
-    @ExceptionHandler(value = Exception.class)
+    //@ExceptionHandler(value = Exception.class)
     public LiuJSONResult defaultErrorHandler(HttpServletRequest request, Exception e) throws Exception {
         e.printStackTrace();
         return LiuJSONResult.errorMsg(e.getMessage());
